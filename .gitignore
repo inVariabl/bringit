@@ -1,0 +1,4 @@
+node_modules/
+bringit.db
+*.log
+.DS_Store

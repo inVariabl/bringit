@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BringIt - Shared Beach List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero hidden">
+        <div class="hero-meta">
+          <p id="eyebrow" class="eyebrow">PUBLIC</p>
+          <span class="meta-dot" aria-hidden="true">•</span>
+          <p id="status" class="status">Saved</p>
+          <button id="export-calendar-btn" class="ghost hidden" type="button">Add to Calendar</button>
+        </div>
+        <h1 id="hero-title" role="button" tabindex="0" aria-label="Edit title">HB BONFIRE</h1>
+        <input id="hero-title-input" class="hero-title-input hidden" maxlength="60" />
+      </header>
+
+      <section id="start-card" class="card hidden">
+        <label for="title-input">List name</label>
+        <input id="title-input" maxlength="60" placeholder="Church Potluck" />
+        <div class="start-actions">
+          <button id="create-public-btn" class="primary" type="button">Create list</button>
+        </div>
+      </section>
+
+      <section id="list-card" class="card hidden">
+        <section class="event-lines">
+          <div class="event-line">
+            <span class="event-label">WHO:</span>
+            <input id="who-line-input" class="event-input" maxlength="160" placeholder="Joe, John, Daniel, Boone, Chad" />
+          </div>
+          <div class="event-line when-line">
+            <span class="event-label">WHEN:</span>
+            <input id="date-line-input" class="event-input event-date" type="date" />
+            <input id="time-line-input" class="event-input event-time" type="time" />
+            <span class="event-sep">-</span>
+            <input id="end-time-line-input" class="event-input event-time" type="time" />
+          </div>
+          <div class="event-line">
+            <span class="event-label">WHERE:</span>
+            <input id="where-line-input" class="event-input" maxlength="120" placeholder="Huntington Beach, CA" />
+          </div>
+        </section>
+
+        <div class="sheet-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th id="item-header" class="sortable-header">Item</th>
+                <th id="name-header" class="sortable-header">Name</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+
+        <button id="add-row-btn" class="primary">Add row</button>
+      </section>
+    </main>
+
+    <template id="row-template">
+      <tr>
+        <td><input data-key="item" placeholder="Umbrella" maxlength="80" /></td>
+        <td><input data-key="person" placeholder="Sam" maxlength="40" /></td>
+      </tr>
+    </template>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
